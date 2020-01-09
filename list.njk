@@ -1,0 +1,26 @@
+{{ category }}
+<ul>
+  {% for p in collections.terms %}
+  <li>
+  <h2>
+  <a name="{{p.data.slug}}">{{p.data.title}}</a>
+  </h2>
+  <p>{{p.data.definition}}</p>  
+  
+  {%if p.data.hasExtraContent %}
+  <p><a href="../terms/{{p.data.extraContentSlug}}">Find out more...</a></p>
+  {% endif %}  
+  
+  {%if p.data.seeAlso %}
+	  See also:
+	  <ul>
+	 {% for term in p.data.seeAlso %}
+		<li>
+			<a href="#{{ collections.terms | getSlugForTitle(term) }}">{{term}}</a>
+		</li>
+	 {% endfor %}
+	 </ul>
+  {% endif %}  
+
+  </li>  {% endfor %}
+</ul>
