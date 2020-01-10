@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link href="style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+</head>
+<body>
+	<header class="navbar bg-secondary p-2">
+	  <section class="navbar-section">
+		<a href="/" class="navbar-brand mr-2">Micronutrient Action Policy Support</a>
+		<a href="https://micronutrient.support" class="btn btn-link text-gray">Project Homepage</a>
+		<a href="https://github.com/micronutrientsupport" class="btn btn-link text-gray">GitHub</a>
+	  </section>
+	  <section class="navbar-section">
+		<div class="input-group input-inline">
+		  <input class="form-input headSearch" type="text" placeholder="search">
+		  <button class="btn btn-primary input-group-btn">Search</button>
+		</div>
+	  </section>
+	</header>
+			<main id="main" class="main inner flex flex-1 flex-col py-10 lg:py-20">
+			<section id="container-centre" class="column centre flex-1">
+				<div class="content">
+				{# include content #}
+				{{ content | safe }}
+				</div>
+			</section>
+		</main>
+ 
+     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+ <script>
+
+var options = {
+  valueNames: [ 'title', 'definition' ]
+};
+var listObj = new List('glossary', options);
+
+$('.headSearch').on('keyup', function() {
+  var searchString = $(this).val();
+  listObj.search(searchString);
+});
+
+
+
+var wordList = new List('glossary', options);
+</script>
+</body>
+</html>
