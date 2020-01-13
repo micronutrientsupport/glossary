@@ -1,0 +1,75 @@
+---
+layout: default
+---
+
+<div class="container">
+  <div class="columns col-gapless">
+    <div class="column col-12">
+    <h1 class="m-1">Glossary</h1>
+    </div>
+
+
+
+
+<div id="glossary" class="column col-12">
+
+{% assign alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" | split: "" %}
+
+{% comment %} <ul class="list m-0" style="list-style-type: none; display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px"> {% endcomment %}
+  {% assign lastletter = "" %}
+  {% for p in collections.terms %}
+  {% assign tmpletter = p.data.title | slice: 0 | upcase %}
+  {% if tmpletter != lastletter %}
+    {% if forloop.first == false %}
+     </ul></div>
+    {% endif %}
+    <div class="listCont">
+
+    {% for letter in alphabet %}
+    {% if letter < tmpletter and letter > lastletter %}
+    <h3 class="text-gray h5">{{ letter }}</h3>
+    {% endif %}
+    {% endfor %}
+
+    <h2 class="h4">{{ tmpletter }}</h2>  
+    <ul class="list m-0" style="list-style-type: none; display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px">
+  {% endif %}
+  {% assign lastletter = tmpletter %}
+  
+  <li class="card m-0">
+  <div class="card-header">
+    <div class="card-title h5"><a name="{{p.data.slug}}" class="title">{{p.data.title}}</a></div>
+    <div class="card-subtitle text-gray">
+	  {%if p.data.seeAlso %}
+	  See also:
+		 {% for term in p.data.seeAlso %} {{ term }}
+		<a href="#{{ collections.terms | getSlugForTitle(term) }}" class="btn btn-primary btn-sm">{{term}}</a>
+		 {% endfor %}
+	{% endif %}  	
+	</div>
+  </div>
+  <div class="card-body">
+    {{p.data.definition}}
+  </div>
+  <div class="card-footer">
+    {%if p.data.hasExtraContent %}
+  <a href="../terms/{{p.data.extraContentSlug}}" class="btn">Find out more...</a>
+  {% endif %}  
+  </div>
+
+
+
+
+  </li>  {% endfor %}
+</ul></div>
+
+    {% for letter in alphabet %}
+    {% if letter > lastletter %}
+    <h3 class="text-gray h5">{{ letter }}</h3>
+    {% endif %}
+    {% endfor %}
+
+</div>
+
+  </div>
+</div>

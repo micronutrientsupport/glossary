@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title></title>
-  <link href="style.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+  <link href="/css/styles.css" rel="stylesheet" />
+  <!--link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
   <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css"-->
 
 </head>
 <body>
@@ -36,19 +36,27 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
  <script>
 
-var options = {
+
+
+$('#glossary .listCont').each(function(index, element) {
+	var options = {
   valueNames: [ 'title', 'definition' ]
 };
-var listObj = new List('glossary', options);
-
-$('.headSearch').on('keyup', function() {
+	var listObj = new List(element, options);
+	$('.headSearch').on('keyup', function() {
   var searchString = $(this).val();
   listObj.search(searchString);
 });
 
+});
 
+//var listObj = new List('glossary', options);
 
-var wordList = new List('glossary', options);
+//$('.headSearch').on('keyup', function() {
+//  var searchString = $(this).val();
+//  listObj.search(searchString);
+//});
+
 </script>
 </body>
 </html>

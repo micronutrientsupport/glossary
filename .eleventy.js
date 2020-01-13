@@ -20,12 +20,18 @@ module.exports = function(eleventyConfig) {
 		return item.inputPath.startsWith('./terms/')	  
 	  });
 
+	return a.sort((a, b) => {
+		return a.data.title > b.data.title
+	})
+
    //console.log(a)
-   return a;
+   //return a;
   });
+
+  eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("CNAME");
    
    eleventyConfig.addFilter("getSlugForTitle", function(collection, title) { 
-	
 	let item = collection.find((item) => item.data.title === title);
 	if(item) {
 		return item.data.slug

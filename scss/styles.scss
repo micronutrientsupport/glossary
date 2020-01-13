@@ -1,0 +1,12 @@
+// Example of project-name.scss
+// Define variables to override default ones
+$primary-color: #328481;
+$secondary-color: #6a6556;
+
+// Import full Spectre source code
+@import "node_modules/spectre.css/src/spectre";
+
+li {
+    display: block;
+    margin-top: 0;
+}
