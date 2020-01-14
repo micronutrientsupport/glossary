@@ -81,8 +81,23 @@ main {
 }
 
 @media (max-width: $size-sm) {
+
+    header section {
+        flex-wrap: wrap;
+        justify-content: flex-start !important;
+    }
+    .hero {
+        padding-bottom: 40px !important;
+        padding-top: 40px !important;
+    }    
+    .blurb {
+        width: 100%;
+    }
     .list {
         grid-template-columns: 1fr;
+    }
+    .a-nextPage {
+        width: 100%;
     }
     .a-dt {
         grid-column-start: 1;

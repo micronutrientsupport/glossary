@@ -25,7 +25,7 @@
 <div class="hero hero-{% if tagline %}lg{% else %}sm{% endif %}" style="
     background: url('/images/globe.jpg') !important;
     width: 100%;
-    height: 200px;
+		height: 200px;
     background-size: cover !important;
     background-position-y: 39% !important;
 		color: #fff;
@@ -53,10 +53,10 @@
 				{% assign nextTerm = collections.terms | getNextTerm: title %}
 				{% assign prevTerm = collections.terms | getPrevTerm: title %}.
 				{% if prevTerm %}
-				<a href="/terms/{{ prevTerm.slug}}" class="btn"><i class="icon icon-back"></i>Previous term detail ({{ prevTerm.title }})</a>
+				<a href="/terms/{{ prevTerm.slug}}" class="btn mb-2 a-nextPage"><i class="icon icon-back"></i>Previous detail page ({{ prevTerm.title }})</a>
 				{% endif %}
 				{% if nextTerm %}
-				<a href="/terms/{{ nextTerm.slug}}" class="btn"><i class="icon icon-forward"></i>Next term detail ({{ nextTerm.title }})</a>
+				<a href="/terms/{{ nextTerm.slug}}" class="btn mb-2 a-nextPage">Next detail page ({{ nextTerm.title }}) <i class="icon icon-forward"></i></a>
 				{% endif %}
 				</section>
 {% endif %}
@@ -66,7 +66,7 @@
 {% if tagline %}
 {% else %}
 <section class="container mt-2 mb-2">
-<a href="/" class="btn btn-primary"><i class="icon icon-back"></i> Back to main Glossary</a>
+<a href="/" class="btn btn-primary"><i class="icon icon-back"></i> Back to full Glossary</a>
 </section>
 {% endif %}
 
