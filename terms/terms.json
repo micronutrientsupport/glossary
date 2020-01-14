@@ -1,1 +1,1 @@
-{ "layout": "default.njk" }
+{ "layout": "default.liquid" }

@@ -1,75 +1,80 @@
 ---
 layout: default
+title: Glossary
+tagline: Definitions of terms used within the MAPS project and the Micronutrient Support Tool
 ---
+<div id="glossary">
 
-<div class="container">
-  <div class="columns col-gapless">
-    <div class="column col-12">
-    <h1 class="m-1">Glossary</h1>
+<div class="container mt-2">
+  <div class="columns">
+    <p class="column col-9 h5">
+    This page lists the definitions of terms, acronyms and other phrases used within the context of the Micronutrient Support tool and the Micronutrient Action Policy Support (MAPS) project.
+    </p>  
+<!-- class="search" automagically makes an input a search field. -->
+  </div>
+  <div class="columns">
+    <div class="form-group column col-3">
+      <label class="form-label" for="search">Filter Glossary</label>
+      <input class="form-input search" id="search" type="text" placeholder="Search" />
     </div>
+  </div>
+  
 
-
-
-
-<div id="glossary" class="column col-12">
-
+<ul class="list d-grid gg-2">
 {% assign alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" | split: "" %}
 
-{% comment %} <ul class="list m-0" style="list-style-type: none; display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px"> {% endcomment %}
   {% assign lastletter = "" %}
   {% for p in collections.terms %}
   {% assign tmpletter = p.data.title | slice: 0 | upcase %}
   {% if tmpletter != lastletter %}
     {% if forloop.first == false %}
-     </ul></div>
+    </dl>
     {% endif %}
-    <div class="listCont">
 
     {% for letter in alphabet %}
     {% if letter < tmpletter and letter > lastletter %}
-    <h3 class="text-gray h5">{{ letter }}</h3>
+    <li class="text-gray h6 d-contents a-empty-letter"><span class="g-col-1 text-center">{{ letter }}</span></li>
+    {% endif %}
+    {% if letter == tmpletter %}
+    <li class="d-contents a-letter"><span class="h4 g-col-1 text-center">{{ tmpletter }}</span>
+    
     {% endif %}
     {% endfor %}
-
-    <h2 class="h4">{{ tmpletter }}</h2>  
-    <ul class="list m-0" style="list-style-type: none; display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px">
+    <dl class="d-contents">
   {% endif %}
   {% assign lastletter = tmpletter %}
   
-  <li class="card m-0">
-  <div class="card-header">
-    <div class="card-title h5"><a name="{{p.data.slug}}" class="title">{{p.data.title}}</a></div>
-    <div class="card-subtitle text-gray">
+  <dt class="text-right pt-1 pr-2 pl-2 g-col-2 border-gray border-r a-dt">
+    <dfn class="h5"><a name="{{p.data.slug}}" class="title">{{p.data.title}}</a></dfn>&nbsp;<a href="#{{ p.data.slug }}"><i class="icon icon-link"></i></a>
 	  {%if p.data.seeAlso %}
-	  See also:
-		 {% for term in p.data.seeAlso %} {{ term }}
-		<a href="#{{ collections.terms | getSlugForTitle(term) }}" class="btn btn-primary btn-sm">{{term}}</a>
+	  <div class="text-normal text-italic a-dd" style="font-size: 0.7rem;">
+    See also:
+		 {% for term in p.data.seeAlso %}
+		<a href="#{{ collections.terms | getSlugForTitle: term }}" class="btn btn-primary btn-sm">{{term}}</a>
 		 {% endfor %}
+     </div>
 	{% endif %}  	
-	</div>
-  </div>
-  <div class="card-body">
-    {{p.data.definition}}
-  </div>
-  <div class="card-footer">
+  </dt>
+
+
+  <dd class="pl-2">
+    <span class="definition">
+    {{p.data.definition}}</span>
     {%if p.data.hasExtraContent %}
-  <a href="../terms/{{p.data.extraContentSlug}}" class="btn">Find out more...</a>
+    <div><a href="../terms/{{p.data.extraContentSlug}}" class="btn">Find out more...</a></div>
   {% endif %}  
-  </div>
+  </dd>
 
 
-
-
-  </li>  {% endfor %}
-</ul></div>
+  {% endfor %}
+</dl></li>
 
     {% for letter in alphabet %}
     {% if letter > lastletter %}
-    <h3 class="text-gray h5">{{ letter }}</h3>
+    <li class="text-gray h6 d-contents a-empty-letter"><span class="g-col-1 text-center">{{ letter }}</span></li>
     {% endif %}
     {% endfor %}
 
-</div>
+</ul>
 
-  </div>
-</div>
+  </li>

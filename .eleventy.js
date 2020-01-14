@@ -29,8 +29,77 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("CNAME");
-   
+	
+  eleventyConfig.addFilter("getPrevTerm", function(collection, title) { 
+	let itemIndex = collection.findIndex((item) => item.data.title === title);
+	if(itemIndex >= 0) {	
+	 	let found = false;
+	 	let outofBounds = false;
+	 	let currIndex = itemIndex - 1;
+	 	while(!(found || outofBounds)) {
+			if (currIndex >= 0) {
+				if(collection[currIndex].data.hasExtraContent) {
+					found = true;
+				}
+				else {
+					currIndex--;
+				}
+			}
+			else {
+				outofBounds = true;
+			}
+		}
+		if(currIndex >= 0 && !outofBounds) {
+			return {
+				title: collection[currIndex].data.title,
+				slug: collection[currIndex].data.slug
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+   });
+
+  eleventyConfig.addFilter("getNextTerm", function(collection, title) { 
+	let itemIndex = collection.findIndex((item) => item.data.title === title);
+	if(itemIndex >= 0) {	
+	 	let found = false;
+	 	let outofBounds = false;
+	 	let currIndex = itemIndex + 1;
+	 	while(!(found || outofBounds)) {
+			if (currIndex < collection.length) {
+				if(collection[currIndex].data.hasExtraContent) {
+					found = true;
+				}
+				else {
+					currIndex++;
+				}
+			}
+			else {
+				outofBounds = true;
+			}
+		}
+		if(currIndex <= collection.length && !outofBounds) {
+			return {
+				title: collection[currIndex].data.title,
+				slug: collection[currIndex].data.slug
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+   });
+
    eleventyConfig.addFilter("getSlugForTitle", function(collection, title) { 
 	let item = collection.find((item) => item.data.title === title);
 	if(item) {
