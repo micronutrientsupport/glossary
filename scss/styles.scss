@@ -69,6 +69,7 @@ li {
 body {
     display: flex;
     flex-direction: column;
+    height: 100vh;
     min-height: 100vh;
 }
 main {
@@ -115,3 +116,7 @@ main {
         width: 100%;
     }
 }
+
+/* IE hacks */
+_:-ms-fullscreen, :root .a-dt { text-align:left; border-right-width: 0; }
+_:-ms-fullscreen, :root main { margin-bottom: 1.4rem; }
