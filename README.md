@@ -5,6 +5,6 @@ Terms are stored in markdown files within the `/terms` directory
 
 At a minimum each term must have a title and short description in the yaml front-matter.  Extended content can be included as markdown which can include images etc and are converted into an individual webpage. e.g. 
 
-https://raw.githubusercontent.com/micronutrientsupport/glossary/master/terms/uon.md
+https://raw.githubusercontent.com/micronutrientsupport/glossary/master/terms/uon.md.
 
 
