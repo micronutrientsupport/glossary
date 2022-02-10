@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "eleventy": "^1.0.6",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "spectre.css": "^0.5.8"
   }
 }
